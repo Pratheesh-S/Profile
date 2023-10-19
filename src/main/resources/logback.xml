@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="TestLog"/>
+        </root>
+        <appender name="TestLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>log/testLog.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>log/test/testLog.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>2KB</maxFileSize>
+                <maxHistory>20</maxHistory>
+                <totalSizeCap>1MB</totalSizeCap>
+
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss} [%thread] %-5level %-40logger{36} -: %msg%n</pattern>
+            </encoder>
+        </appender>
+
+    </springProfile>
+    <springProfile name="default">
+        <root level="INFO">
+            <appender-ref ref="defaultLog"/>
+        </root>
+        <appender name="defaultLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>log/defaultLog.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>log/default/defaultLog.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>2KB</maxFileSize>
+                <maxHistory>20</maxHistory>
+                <totalSizeCap>1MB</totalSizeCap>
+
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss} [%thread] %-5level %-40logger{36} -: %msg%n</pattern>
+            </encoder>
+        </appender>
+
+    </springProfile>
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="ProdLog"/>
+        </root>
+        <appender name="ProdLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>log/prodLog.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>log/prod/prodLog.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>2KB</maxFileSize>
+                <maxHistory>20</maxHistory>
+                <totalSizeCap>1MB</totalSizeCap>
+
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss} [%thread] %-5level %-40logger{36} -: %msg%n</pattern>
+            </encoder>
+        </appender>
+    </springProfile>
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="DevLog"/>
+        </root>
+        <appender name="DevLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>log/devLog.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+                <fileNamePattern>log/prod/prodLog.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+                <maxFileSize>2KB</maxFileSize>
+                <maxHistory>20</maxHistory>
+                <totalSizeCap>1MB</totalSizeCap>
+
+            </rollingPolicy>
+            <encoder>
+                <pattern>%d{HH:mm:ss} [%thread] %-5level %-40logger{36} -: %msg%n</pattern>
+            </encoder>
+        </appender>
+    </springProfile>
+
+
+    <appender name="allLog" class="ch.qos.logback.core.FileAppender">
+        <file>log/allLog.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %-40logger{36} -: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss} [%thread] %-5level %-40logger{36} -: %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="allLog"/>
+    </root>
+
+</configuration>
